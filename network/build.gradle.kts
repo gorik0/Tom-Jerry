@@ -1,6 +1,9 @@
+import com.android.utils.TraceUtils.simpleId
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,4 +43,21 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+
+//    RETRO
+    implementation(libs.retrofit.core)
+    implementation(libs.okhttp)
+    implementation(libs.okhttpLoggingIntercpetor)
+    ksp(libs.moshi.codegen)
+    implementation(libs.moshi)
+    implementation(libs.moshi.converter)
+
+
+//    HILT
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.dagger.hilt.compiler)
+
+
 }
