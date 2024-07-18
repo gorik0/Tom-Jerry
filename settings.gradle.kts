@@ -21,3 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tom&Jerry"
 include(":app")
+include(":common")
+include(":feature")
+include(":network")
+include(":navigation")
+include(":design")
