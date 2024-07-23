@@ -2,6 +2,7 @@ package com.gorik.network.di
 
 import android.content.Context
 import androidx.core.content.contentValuesOf
+import com.gorik.network.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -15,6 +16,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 import javax.inject.Singleton
 import com.gorik.network.interceptor.CacheInterceptor
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 
 @Module
@@ -25,12 +27,12 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(
         okhttpClient: OkHttpClient,
-        baseUrl: String,
+
         moshi: Moshi,
     ): Retrofit {
         return Retrofit.Builder()
             .client(okhttpClient)
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.NEWS_API_BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
@@ -52,7 +54,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHTTP(context:Context,
+    fun provideOkHTTP(@ApplicationContext context:Context,
                       cacheInterceptor:CacheInterceptor,): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(Cache(File(context.cacheDir,"http-cache"),10L * 1024L * 1024L))

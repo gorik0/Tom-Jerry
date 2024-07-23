@@ -7,8 +7,3 @@ plugins {
 }
 
 
-allprojects.forEach() {
-    proj->
-  proj.plugins.apply(libs.plugins.compose.compiler.get().pluginId)
-
-}
